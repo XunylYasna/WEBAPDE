@@ -1,0 +1,25 @@
+<script>
+  function displayMessage()
+  {
+      var story = document.getElementById("story").value;
+      post.innerHTML = story;
+  }
+</script>
+
+
+
+
+<div class="col-md-4 m-auto">
+  <div class="card card-body">
+    <form method="POST">
+      Story: <br>
+      <textarea id="story"></textarea>
+    </form>
+
+    <form>
+      <input type="submit" value="add" onclick="displayMessage(); return false">
+    </form>
+
+    <p id="post"></p>
+  </div>
+</div>
