@@ -1,0 +1,26 @@
+
+#MAPHEAD
+{
+  color:WHITE;
+  font-family: sans-serif;
+  text-shadow: -4px 1px red;
+  font-weight: 700;
+}
+
+#mainhead
+{
+  font-family: monospace;
+  text-shadow: -4px 1px blue;
+  font-weight: 800;
+}
+
+#welcome
+{
+    color:white;
+}
+
+#username
+{
+  color:red;
+  padding-bottom: 15px;
+}

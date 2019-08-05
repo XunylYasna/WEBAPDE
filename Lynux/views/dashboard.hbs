@@ -1,3 +1,15 @@
-<h1 class="mt-4">Dashboard</h1>
-<p class="lead mb-3">Welcome {{user.name}}</p>
-<a href="/users/logout" class="btn btn-secondary">Logout</a>
+<h1 class="mt-4" id="mainhead">Dashboard</h1>
+
+<div class="row justify-content-end">
+  <div class="card card-body">
+    <div class="col">
+      <h2 id="MAPHEAD">MAP</h2>
+    </div>
+  </div>
+  <div class="col-sm-3">
+    <div class="card card-body">
+      <p class="lead mb-0" id="welcome">Welcome <span id="username"> {{user.name}} </span> </p>
+      <a href="/users/logout" class="btn btn-secondary">Logout</a>
+    </div>
+  </div>
+</div>
