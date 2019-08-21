@@ -17,12 +17,20 @@ const UserSchema = new mongoose.Schema({
         required: true
     },
 
-    date: {
+    datejoined: {
         type: Date,
         default: Date.now
     },
 
-    post: []
+    post: [],
+
+    karma:{
+        
+    },
+
+    picture: {
+
+    }
 })
 
 const User = mongoose.model('User', UserSchema)

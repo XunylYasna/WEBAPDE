@@ -6,17 +6,21 @@ const BlogSchema = new mongoose.Schema({
         required: true
     },
 
-    post: {
+    writeup: {
         type: String,
         required: true
     },
 
-    author:{
-        
+    author: {
+
     },
 
     location: {
         loc :  { type: {type:String}, coordinates: [Number]}
+    },
+
+    maps_link: {
+
     },
 
     date: {
@@ -28,7 +32,9 @@ const BlogSchema = new mongoose.Schema({
 
     upvotes: [],
 
-    downvotes: []
+    downvotes: [],
+
+    pictures:[]
 })
 
 const Blog = mongoose.model('Blog', BlogSchema)

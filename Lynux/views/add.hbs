@@ -1,25 +1,142 @@
-<script>
-  function displayMessage()
-  {
-      var story = document.getElementById("story").value;
-      post.innerHTML = story;
-  }
-</script>
+<style>
+
+
+.body {
+  width:200px;
+  font-family:sans-serif;
+  margin:10% auto;
+  text-align:center;
+  height:200px;
+}
+
+#divCircle {
+  width: 195px;
+  height: 195px;
+  border-radius:200px;
+  position: relative;
+  overflow:hidden;
+  top:-10px;
+  left:-10px;
+  opacity:0;
+  margin: -60px;
+  -webkit-transition:opacity 0s 0s;
+}
+
+#divCircle i{
+  
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  background:white;
+  border-radius:60px;
+    border:2px #000 solid;
+  -webkit-transition:all 0.4s;
+}
+
+#divCircle i:hover {
+  border:2px #333 solid;
+  width: 55px;
+  height: 55px;
+}
+
+
+	
+
+.avatarList {
+  display:inline-block;
+  border:1px black solid;
+  width:60px;
+  height:60px;
+  background:white;
+  border-radius:60px;
+}
+
+.avatarList.expand .mainIcon i {
+
+   border-color:rgba(0,0,0,1);
+      border-width:60px;
+     margin:0; 
+}
+
+#divCircle.expand {
+  display:block;
+  opacity:1;
+  -webkit-transition:opacity 0.5s 0.4s;
+}
+
+</style>
 
 
 
+<div class="body">
+  <div>Click to pick avatar</div><br/>
+  <div class="avatarList">
+    <div class="mainIcon"><i class="fas fa-book-dead fa-2x"></i></div>
 
-<div class="col-md-4 m-auto">
-  <div class="card card-body">
-    <form method="POST">
-      Story: <br>
-      <textarea id="story"></textarea>
-    </form>
-
-    <form>
-      <input type="submit" value="add" onclick="displayMessage(); return false">
-    </form>
-
-    <p id="post"></p>
+    <div id="divCircle">
+        <div id="middleBubble"></div>
+        {{!-- <img src="http://png-1.findicons.com/files/icons/1072/face_avatars/300/a03.png">
+        <img src="http://png-3.findicons.com/files/icons/1072/face_avatars/300/c05.png">
+        <img src="https://gp5.googleusercontent.com/-esaz03FKsLU/AAAAAAAAAAI/AAAAAAAAAAA/kk0t9Rd9DB0/s48-c-k-no/photo.jpg">
+        <img src="http://www.veryicon.com/icon/png/Avatar/Face%20Avatars/Male%20Face%20G1.png">
+        <img src="http://icons.iconarchive.com/icons/hopstarter/face-avatars/256/Female-Face-FG-1-brunette-icon.png">
+        <img src="http://png-3.findicons.com/files/icons/1072/face_avatars/300/c05.png">
+        <img src="http://png-1.findicons.com/files/icons/1072/face_avatars/300/i04.png"> --}}
+        
+        <i class="fas fa-skull-crossbones fa-2x"></i>
+        <i class="fas fa-cat fa-2x"></i>
+        <i class="fas fa-crow fa-2x"></i>
+        <i class="fas fa-spider fa-2x"></i>
+        <i class="fas fa-hat-wizard fa-2x"></i>
+        <i class="fas fa-cloud-moon fa-2x"></i>
+        <i class="fas fa-book-dead fa-2x"></i>
+    </div>
+  
   </div>
 </div>
+
+
+<script>
+   $(document).ready(function(){
+    
+			//Center the "info" bubble in the  "circle" div
+			var divTop = ($("#divCircle").height() - $("#middleBubble").height())/2;
+			var divLeft = ($("#divCircle").width() - $("#middleBubble").width())/2;
+			$("#middleBubble").css("top",divTop + "px");
+			$("#middleBubble").css("left",divLeft + "px");
+			
+			//Arrange the icons in a circle centered in the div
+			numItems = $( "#divCircle i" ).length; //How many items are in the circle?
+			start = 0.0; //the angle to put the first image at. a number between 0 and 2pi
+			step = (4*Math.PI)/numItems; //calculate the amount of space to put between the items.
+			
+			//Now loop through the buttons and position them in a circle
+			$( "#divCircle i" ).each(function( index ) {
+				radius = ($("#divCircle").width() - $(this).width())/2.3; //The radius is the distance from the center of the div to the middle of an icon
+				//the following lines are a standard formula for calculating points on a circle. x = cx + r * cos(a); y = cy + r * sin(a)
+				//We have made adjustments because the center of the circle is not at (0,0), but rather the top/left coordinates for the center of the div
+				//We also adjust for the fact that we need to know the coordinates for the top-left corner of the image, not for the center of the image.
+				tmpTop = (($("#divCircle").height()/2) + radius * Math.sin(start)) - ($(this).height()/2);
+				tmpLeft = (($("#divCircle").width()/2) + radius * Math.cos(start)) - ($(this).width()/2);
+				start += step; //add the "step" number of radians to jump to the next icon
+				
+				//set the top/left settings for the image
+				$(this).css("top",tmpTop);
+				$(this).css("left",tmpLeft);
+			});
+				
+		});
+
+$('.avatarList').click(function() {
+  $(this).toggleClass('expand');
+  $('#divCircle').toggleClass('expand');
+});
+
+$('#divCircle i').click(function() {
+  var theSrc = $(this).attr('src');
+  //alert(theSrc);
+  $('.mainImg i').attr('src', theSrc);
+});
+
+ </script> 
+  
