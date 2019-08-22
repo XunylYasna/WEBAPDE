@@ -1,3 +1,11 @@
+<script type="text/javascript">
+  var addFlag = false;
+
+  function toggleFlag(){
+    addFlag = !addFlag
+  }
+
+</script>
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
   <a class="navbar-brand" href="#"><i class="fas fa-ghost"></i> Ghost Payter</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
@@ -8,16 +16,7 @@
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
         {{!-- <a class="nav-link" href="/dashboard">Home <span class="sr-only">(current)</span></a> --}}
-        <a class="nav-link" href="/dashboard">Home</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="/map">Map</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="/profile">Profile</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="/about">About</a>
+        <a class="nav-link" data-toggle="modal" data-target="#exampleModal">Add Story</a>
       </li>
     </ul>
     <div class="left">
@@ -26,8 +25,27 @@
       <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
       <a href="/users/logout" class="btn btn-primary ml-2 my-3 my-sm-0">Logout</a>
     </form>
-    
+
     </div>
-    
+
   </div>
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel" onclick="/toggleFlag()">Add a Story</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            Please select a location!
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary">Okay</button>
+          </div>
+        </div>
+      </div>
+    </div>
 </nav>

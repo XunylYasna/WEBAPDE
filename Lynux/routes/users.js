@@ -16,9 +16,9 @@ router.get('/register', (req,res) => res.render("register"))
 
 // Register Handle
 router.post('/register', (req, res) => {
-    
+
     const { name, email, password, password2} = req.body;
-    
+
     let errors = [];
 
     // Check required fields
@@ -36,7 +36,7 @@ router.post('/register', (req, res) => {
         errors.push('Password should be at least 6 characters.')
     }
 
-   
+
 
     if(errors.length > 0){
         res.render('register',{
@@ -62,7 +62,7 @@ router.post('/register', (req, res) => {
                     email,
                     password
                 })
-                
+
             // Hash Password
                 bcrypt.genSalt(10, (err,salt) => bcrypt.hash(newUser.password, salt, (err, hash) =>{
                     if(err){
@@ -81,22 +81,22 @@ router.post('/register', (req, res) => {
                     }
                 }));
 
-                
+
             }
         })
-    
+
     }
-    
+
 })
 
 // Login
 router.post('/login', (req,res, next) => {
     passport.authenticate('local',{
-        successRedirect: '/dashboard',
+        successRedirect: '/map',
         failureRedirect: '/users/login',
         failureFlash: true
     })(req,res,next)
-  
+
 })
 
 // Logout

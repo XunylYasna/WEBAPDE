@@ -1,28 +1,189 @@
-<link rel ="stylesheet" type = "text/css" href = "/css/style.css"/>
-<link href="https://fonts.googleapis.com/css?family=Lacquer|Red+Hat+Display&display=swap"
-    rel="stylesheet">
+  <style>
+    html,body{
+      height:100%;
+      margin: 0;
+      padding: 0;
+    }
+    #map{
+      height:100%;
+      width:100%;
+    }
+    h1 {
+       font-size: 20px;
+       color: red;
+       text-transform: uppercase;
+       text-align: center;
+       font-weight: bold;
+       margin: 0 0 35px 0;
+       text-shadow: -2px 1px white;
+         }
 
+     .gm-style .gm-style-iw {
+        background-color: #252525 !important;
+        top: 0 !important;
+        left: 0 !important;
+        height: 200px;
+        min-height: 150px !important;
+        padding-top: 10px;
+       }
+       /*style the paragraph tag*/
+      .gm-style .gm-style-iw #google-popup p{
+         padding: 10px;
+      }
 
+     /*style the annoying little arrow at the bottom*/
+     .gm-style div div div div div div div div {
+         background-color: #252525 !important;
+         top: 0;
+         color: #fff;
+         font-size: 16px;
+     }
+
+     /*style the link*/
+     .gm-style div div div div div div div div a {
+         color: #f1f1f1;
+         font-weight: bold;
+     }
+  </style>
 {{>navbar}}
-<div class="philippine-map_container">
-    
-    <div class="philippine-map_view">
-      <img draggable="false" src="images/philippine-map-super-large.svg">
+  <div id="map"></div>
+  <script>
+    function initMap(){
+      // Map options
+      var options = {
+        center: {lat: 14.5647, lng: 120.9932},
+        zoom: 16,
+        styles: [
+          {elementType: 'geometry', stylers: [{color: '#242f3e'}]},
+          {elementType: 'labels.text.stroke', stylers: [{color: '#242f3e'}]},
+          {elementType: 'labels.text.fill', stylers: [{color: '#746855'}]},
+          {
+            featureType: 'administrative.locality',
+            elementType: 'labels.text.fill',
+            stylers: [{color: '#d59563'}]
+          },
+          {
+            featureType: 'poi',
+            elementType: 'labels.text.fill',
+            stylers: [{color: '#d59563'}]
+          },
+          {
+            featureType: 'poi.park',
+            elementType: 'geometry',
+            stylers: [{color: '#263c3f'}]
+          },
+          {
+            featureType: 'poi.park',
+            elementType: 'labels.text.fill',
+            stylers: [{color: '#6b9a76'}]
+          },
+          {
+            featureType: 'road',
+            elementType: 'geometry',
+            stylers: [{color: '#38414e'}]
+          },
+          {
+            featureType: 'road',
+            elementType: 'geometry.stroke',
+            stylers: [{color: '#212a37'}]
+          },
+          {
+            featureType: 'road',
+            elementType: 'labels.text.fill',
+            stylers: [{color: '#9ca5b3'}]
+          },
+          {
+            featureType: 'road.highway',
+            elementType: 'geometry',
+            stylers: [{color: '#746855'}]
+          },
+          {
+            featureType: 'road.highway',
+            elementType: 'geometry.stroke',
+            stylers: [{color: '#1f2835'}]
+          },
+          {
+            featureType: 'road.highway',
+            elementType: 'labels.text.fill',
+            stylers: [{color: '#f3d19c'}]
+          },
+          {
+            featureType: 'transit',
+            elementType: 'geometry',
+            stylers: [{color: '#2f3948'}]
+          },
+          {
+            featureType: 'transit.station',
+            elementType: 'labels.text.fill',
+            stylers: [{color: '#d59563'}]
+          },
+          {
+            featureType: 'water',
+            elementType: 'geometry',
+            stylers: [{color: '#17263c'}]
+          },
+          {
+            featureType: 'water',
+            elementType: 'labels.text.fill',
+            stylers: [{color: '#515c6d'}]
+          },
+          {
+            featureType: 'water',
+            elementType: 'labels.text.stroke',
+            stylers: [{color: '#17263c'}]
+          }
+        ]
 
-      <div class="philippine_rah">
-        <img draggable="false" src="images/eow.png" />
-      </div>
-    </div>
+      }
 
-    <div class="philippine-location_info">
-      <div class="location_row location_row_close">
-        <div class="location_close">
-          ×
-        </div>
-      </div>
-      <div class="location_info_container">
-      </div>
-    </div>
-  </div>
+      // New map
+      var map = new google.maps.Map(document.getElementById('map'), options);
+      var areaNum = 0;
+      // Listen for click on map
+      google.maps.event.addListener(map, 'click', function(event){
+        // Add marker
+        areaNum++;
+        addMarker({coords:event.latLng,
+                   content:"<h1>Area " +areaNum + ": </h1>" +"</br>" + event.latLng.toString()});
+      });
 
-  <script src="/scripts/map.js"></script>
+      // Add Marker Function
+      function addMarker(props){
+        var marker = new google.maps.Marker({
+          position:props.coords,
+          map:map,
+          id:areaNum
+          //icon:props.iconImage
+        });
+      //  marker.addListener('click', function(event){
+
+      //  });
+        // Check content
+        if(props.content){
+          var infoWindow = new google.maps.InfoWindow({
+            content:props.content
+          });
+
+          marker.addListener('click', function(event){
+            infoWindow.open(map, marker);
+            console.log(event.latLng.toString())
+            console.log(infoWindow.content)
+            console.log(marker.id)
+            //if(addStory=1){
+
+            //}
+          });
+
+        // Check for customicon
+        if(props.iconImage){
+          // Set icon image
+          marker.setIcon(props.iconImage);
+        }
+        }
+      }
+    }
+
+  </script>
+  <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAg6B9CAbD6nXJTCV5tZnH83XalSXnMQlQ&callback=initMap">
+    </script>
