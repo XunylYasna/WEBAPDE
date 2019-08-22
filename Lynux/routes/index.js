@@ -19,6 +19,18 @@ router.get('/', (req,res) => {
 })
 
 
+router.get('/view', (req,res) => {
+    var postid = req.query.post_id
+
+    Post.findOne({_id:postid})
+    .then(post => {
+        res.render('story',{
+            post:post
+        })
+    })
+})
+
+
 // Adding a post, getting the form
 router.get('/add', ensureAuthenticated, (req,res) =>
     res.render('add',{
