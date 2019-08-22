@@ -3,27 +3,33 @@ const router = express.Router();
 const { ensureAuthenticated } = require('../config/auth')
 
 
-router.get('/', (req,res) => res.render('welcome'))
 
-router.get('/add', (req,res) => res.render("add"))
+// Post Model
+const Post = require('../model/Post');
 
-router.get('/dashboard', ensureAuthenticated, (req,res) =>
-    res.render('dashboard',{
-        user:req.user
-    }))
 
-router.get('/about', ensureAuthenticated, (req,res) => res.render("about"))
-
-router.get('/map', (req,res) => {
-
-    res.render("map")
+// Displaying post
+router.get('/', (req,res) => {
+    Post.find({}, function(err, posts) {
+        res.render('map',{
+            user:req.user,
+            posts:posts
+        })
+     }); 
 })
 
-router.get('/profile', ensureAuthenticated, (req,res) =>
-    res.render('profile',{
-        user:req.user
+
+// Adding a post
+router.get('/add', ensureAuthenticated, (req,res) =>
+    res.render('add',{
+        user:req.user,
+        location:req.location
     }))
 
+// Liking a post
+
+
+// Unlinking a post
 
 
 module.exports = router;

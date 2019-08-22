@@ -45,7 +45,26 @@
          font-weight: bold;
      }
   </style>
-{{>navbar}}
+
+{{#if user}}
+    {{>navbar}}
+  {{else}}
+    {{>navbarG}}
+{{/if}}
+
+<div>
+{{#each success_msg}}
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+      {{this}}
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+    </div>
+{{/each}}
+
+</div>
+
+
   <div id="map"></div>
   <script>
     function initMap(){

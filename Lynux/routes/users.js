@@ -12,6 +12,8 @@ const bcrypt = require('bcryptjs');
 
 router.get('/login', (req,res) => res.render("login"))
 
+router.get('/welcome', (req,res) => res.render("welcome"))
+
 router.get('/register', (req,res) => res.render("register"))
 
 // Register Handle
@@ -92,9 +94,10 @@ router.post('/register', (req, res) => {
 // Login
 router.post('/login', (req,res, next) => {
     passport.authenticate('local',{
-        successRedirect: '/map',
+        successRedirect: '/',
         failureRedirect: '/users/login',
-        failureFlash: true
+        failureFlash: true,
+        successFlash: true
     })(req,res,next)
 
 })
@@ -103,7 +106,7 @@ router.post('/login', (req,res, next) => {
 router.get('/logout', (req,res) =>{
     req.logout()
     req.flash('success_msg', 'You are logged out.')
-    res.redirect('/users/login')
+    res.redirect('/')
 })
 
 module.exports = router;
