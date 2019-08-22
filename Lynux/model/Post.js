@@ -30,6 +30,7 @@ const BlogSchema = new mongoose.Schema({
     },
 
     score: {
+        type: Number,
         default:0
     }
 })

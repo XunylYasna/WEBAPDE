@@ -165,10 +165,6 @@ function toggleAddFlag(){
     map.controls[google.maps.ControlPosition.TOP_LEFT].push(centerControlDiv);
 
 
-
-
-  })
-
    // Listen for click on map
    google.maps.event.addListener(map, 'click', function(event){
      // Add story

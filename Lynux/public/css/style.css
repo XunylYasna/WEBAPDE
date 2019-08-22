@@ -4,7 +4,7 @@ html,body{
   padding: 0;
 }
 #map{
-  height:100%;
+  height:92%;
   width:100%;
 }
 
@@ -37,24 +37,28 @@ html,body{
 
 /* Story */
 
-.like-row{
-  display:flex;
-  flex-flow:row;
-  align-items: center;
-}
-
 .like-number{
-  margin-left:16px;
+  margin:8px;
   font-size:35px;
 }
+.like-up{
+  margin:8px;
+  font-size:50px;
+}
+.like-up:hover {
+  opacity: 0.6;
+  transition: opacity 0.25s ease-in-out;
+  cursor: pointer;
+}
 
- .like-up{
-   margin-bottom:16px;
-   font-size:50px;
- }
+.author-story .date-story{
+  font-size:18px;
+}
 
- .like-up:hover {
-   opacity: 0.6;
-   transition: opacity 0.25s ease-in-out;
-   cursor: pointer;
- }
+.liked{
+  color: Tomato;
+}
+
+.seperator{
+  background-color: #ffffff;height: 2px
+}

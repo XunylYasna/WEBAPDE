@@ -2,9 +2,11 @@ const express = require('express');
 const app = express();
 const PORT = process.env.PORT || 3000;
 const path = require('path')
+const bodyParser = require('body-parser');
 
 // Body Parser
-app.use(express.urlencoded({ extended:false }))
+app.use(bodyParser.json()); // for parsing application/json
+app.use(bodyParser.urlencoded({ extended: true }));
 
 // Handlebars
 const exphbs  = require('express-handlebars');

@@ -1,27 +1,44 @@
-// Taken from https://pusher.com/tutorials/realtime-likes-nodejs
+$(function() { 
+    
+    // console.log(post.title)
 
-var updatePostStats = {
-    Like: function (postId) {
-        document.querySelector('#likes-count-' + postId).textContent++;
-    },
-    Unlike: function(postId) {
-        document.querySelector('#likes-count-' + postId).textContent--;
-    }
-};
+    var like = 1;
+    var cur = post.score
 
-var toggleButtonText = {
-    Like: function(button) {
-        button.textContent = "Unlike";
-    },
-    Unlike: function(button) {
-        button.textContent = "Like";
-    }
-};
+    $('#likeb').click(function(){
+        $(this).toggleClass('liked');
+        console.log(like)
+        $.ajax({
+            url:'/like',
+            type:'POST',
+            dataType: "json",
+            data:{
+                // id: post._id,
+                // act: like,
+                // cur: cur
+            },
+            contentType: "application/json",
+            cache: false,
+            timeout: 5000,
+            complete: function() {
+                //called when complete
+                console.log('process complete');
+            },
 
-var actOnPost = function (event) {
-    var postId = event.target.dataset.postId;
-    var action = event.target.textContent.trim();
-    toggleButtonText[action](event.target);
-    updatePostStats[action](postId);
-    axios.post('/posts/' + postId + '/act', { action: action });
-};
+            success: function(data) {
+                console.log(data);
+                cur += data.some
+                console.log('process sucess');
+            },
+
+            error: function() {
+                console.log('process error');
+            },
+        });
+
+        like *= -1;
+
+        $('#liken').html(cur);
+
+    })
+})

@@ -62,14 +62,36 @@ router.get('/view', (req,res) => {
     })
 })
 
+// Searching post
+router.get('/search', (req,res) => {
+    var search = req.query.search
+
+    Post.find({"title": { "$regex": search, "$options": "i"}}, function(err, posts) {
+        if (err) return handleError(err)
+
+        res.render('map',{
+            user:req.user,
+            posts:posts
+        })
+     }); 
+})
+
 
 // Liking post
-router.post('/view/:id/act', (req, res, next) => {
-    const action = req.body.action;
-    const counter = action === 'Like' ? 1 : -1;
-    Post.update({_id: req.params.id}, {$inc: {score: counter}}, {}, (err, numberAffected) => {
-        res.send('');
-    });
+router.post('/like', (req, res, next) => {
+    // const id = req.body.id;
+    // const act = req.body.act;
+    // var current = req.body.cur;
+
+    var counter = 1000;
+    if(act > 0){
+        counter = 1;
+    }
+
+    // Post.update({_id: id}, {$inc: {score: counter}}, {}, (err, numberAffected) => {});
+
+    
+    res.send({ some: counter });
 });
 
 // Realtime updates to multiple clients liking

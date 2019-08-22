@@ -1,3 +1,9 @@
+
+<script>
+      var post = {{{json post}}}
+</script>
+<script type="text/javascript" src="../scripts/like.js"></script>
+
 {{#if user}}
     {{>navbar}}
   {{else}}
@@ -5,18 +11,34 @@
 {{/if}}
 
 <div class="container">
-  <div class="form-group">
-    <h1 class="storyTitle"> {{post.title}}</h1>
-    <i class="far fa-hand-point-up like-up"></i><p class="like-number">0</p>
-    <p class="author-story">
-      By: {{post.author.name}}
-    </p>
-    <p class="date-story">
-      Date written: {{post.date}}
-    </p>
-    <p class="location-story">
-      Location: {{post.location}}
-    </p>
-      <textarea class="form-control" id="inputStory" rows="50" readonly>{{post.writeup}}</textarea>
+    <div class="row">
+        <div class="col-sm">
+            <h1 class="storyTitle">{{post.title}}</h1>
+        </div>
+        <div class="col-sm">
+            <div class="row">
+                <span id="likeb"><i class="fas fa-skull-crossbones like-up"></i></span>
+                <p id="liken" class="like-number">{{post.score}}</p>
+            </div>
+        </div>
+
+        <div class="col-sm">
+        </div>
     </div>
+
+
+    <p class="author-story">
+        By: {{post.author.name}}
+    </p>
+
+    <p class="date-story">
+    Posted on {{post.date}}
+    </p><br>
+
+    <div class="separator  normal" style="background-color: #ffffff;height: 2px;"></div>
+    <br>
+    
+    <p style="font-size:21px;line-height:32px;">
+    {{post.writeup}}
+    </p>
 </div>
