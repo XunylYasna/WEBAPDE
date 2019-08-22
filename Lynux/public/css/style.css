@@ -37,13 +37,24 @@ html,body{
 
 /* Story */
 
-.like-up{
-  margin-bottom:16px;
-  font-size:50px;
+.like-row{
+  display:flex;
+  flex-flow:row;
+  align-items: center;
 }
 
-.like-up:hover {
-  opacity: 0.6;
-  transition: opacity 0.25s ease-in-out;
-  cursor: pointer;
+.like-number{
+  margin-left:16px;
+  font-size:35px;
 }
+
+ .like-up{
+   margin-bottom:16px;
+   font-size:50px;
+ }
+
+ .like-up:hover {
+   opacity: 0.6;
+   transition: opacity 0.25s ease-in-out;
+   cursor: pointer;
+ }
