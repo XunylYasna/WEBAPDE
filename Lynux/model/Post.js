@@ -16,7 +16,7 @@ const BlogSchema = new mongoose.Schema({
     },
 
     location: {
-        loc :  { type: {type:String}, coordinates: [Number]}
+        type: String
     },
 
 
@@ -25,7 +25,9 @@ const BlogSchema = new mongoose.Schema({
         default: Date.now
     },
 
-    picture:[],
+    picture:{ 
+        data: Buffer, contentType: String 
+    },
 
     score: {
         default:0

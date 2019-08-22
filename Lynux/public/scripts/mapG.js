@@ -1,5 +1,6 @@
 var map
 
+console.log(posts)
 
  function initMap(){
    // Map options
@@ -93,13 +94,6 @@ var map
    map = new google.maps.Map(document.getElementById('map'), options);
    var areaNum = 0;
 
-
-   // Create the DIV to hold the control and call the CenterControl()
-    // constructor passing in this DIV.
-    var centerControlDiv = document.createElement('div');
-    var centerControl = new AddControl(centerControlDiv, map);
-    centerControlDiv.index = 1;
-    map.controls[google.maps.ControlPosition.TOP_LEFT].push(centerControlDiv);
 
 
    // Listen for click on map

@@ -8,14 +8,28 @@ app.use(express.urlencoded({ extended:false }))
 
 // Handlebars
 const exphbs  = require('express-handlebars');
+
+var hbsHelpers = exphbs.create({
+    extname: '.hbs',
+    defaultLayout: 'main',
+    helpers: require("./helpers/maphelper.js").helpers,
+    layoutsDir: path.join(__dirname, "views/layouts/"),
+    partialsDir: path.join(__dirname, 'views/partials')
+});
+
 app.engine( 'hbs', exphbs( {
     extname: '.hbs',
     defaultLayout: 'main',
+    helpers: {
+      json: function (content) { return JSON.stringify(content); },
+      bar: function () { return 'BAR!'; }
+    },
     layoutsDir: path.join(__dirname, "views/layouts/"),
     partialsDir: path.join(__dirname, 'views/partials')
   }));
 
 app.set('view engine', '.hbs');
+
 
 
 // Mongoose Config and Connection
