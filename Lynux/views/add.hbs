@@ -1,10 +1,10 @@
 {{>navbar}}
 
 <div class="container">
-  <form class="needs-validation" novalidate>
+  <form class="needs-validation" action="addStory" method="POST" novalidate>
   <div class="form-group">
     <label for="inputTitle">Title of the story</label>
-    <input type="text" class="form-control" id="inputTitle" aria-describedby="inputInstruc" placeholder="Enter Title" required>
+    <input type="text" class="form-control" id="inputTitle" name="title" aria-describedby="inputInstruc" placeholder="Enter Title" required>
     <small id="inputInstruc" class="form-text text-muted">Make it really spooky</small>
     <div class="invalid-feedback">
         Please Enter a title.
@@ -12,19 +12,19 @@
   </div>
 
   <label for="locationStory">Location of story</label>
-  <input class="form-control" type="text" id="locationStory" placeholder="{{location}}" readonly>
+  <input class="form-control" type="text" id="locationStory" name="location" placeholder="{{location}}" value="{{location}}" readonly>
   <br>
 
   <div class="form-group">
       <label for="inputStory">Write down your story</label>
-      <textarea class="form-control" id="inputStory" rows="3" required></textarea>
+      <textarea class="form-control" id="inputStory" rows="6" name="writeup" required></textarea>
       <div class="invalid-feedback">
         No story was entered
       </div>
     </div>
     <div class="form-group">
       <label for="importFile">Add a picture</label>
-      <input type="file" class="form-control-file" id="importFile">
+      <input type="file" name="picture" class="form-control-file" id="importFile">
     </div>
     
     <br>

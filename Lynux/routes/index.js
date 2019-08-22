@@ -19,12 +19,34 @@ router.get('/', (req,res) => {
 })
 
 
-// Adding a post
+// Adding a post, getting the form
 router.get('/add', ensureAuthenticated, (req,res) =>
     res.render('add',{
-        user:req.user,
-        location:req.location
-    }))
+        user: req.user,
+        location: req.query.latlong
+    })
+)
+
+// Adding a post, storing the post to DB
+router.post('/addStory', ensureAuthenticated, (req,res) =>{
+    
+    const { title, writeup, location, picture} = req.body;
+    const newPost = new Post({
+        title:title,
+        writeup:writeup,
+        author:req.user,
+        location:location,
+        date: Date.now(),
+        picture:picture
+    })
+
+    newPost.save()
+        .then(post => {
+            req.flash('success_msg', 'New story added.')
+            res.redirect('/')
+        })
+        .catch(err => console.log(err))
+})
 
 // Liking a post
 

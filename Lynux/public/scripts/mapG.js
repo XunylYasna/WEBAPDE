@@ -1,67 +1,4 @@
-var addFlag = false;
 var map
-
-// Top Left Button
-var controlUI = document.createElement('div');
-var controlText = document.createElement('div');
-
-function toggleAddFlag(){
-  addFlag = !addFlag;
-
-  if(addFlag){
-    controlText.innerHTML = 'x';
-    controlUI.title = 'Click to Cancel';
-    controlUI.setAttribute('data-toggle', 'modal');
-    controlUI.setAttribute('data-target', '#exampleModal'); 
-  }
-
-  else{
-    controlText.innerHTML = '+';
-    controlUI.title = 'Click to Add a Story';
-
-    controlUI.removeAttribute('data-toggle');
-    controlUI.removeAttribute('data-target');  
-  }
- }
-
-// Makes the add button top left of the map
- function AddControl(controlDiv, map) {
-
-  // Set CSS for the control border.
-  
-  controlUI.style.backgroundColor = '#fff';
-  controlUI.style.border = '2px solid #fff';
-  controlUI.style.borderRadius = '50%';
-  controlUI.style.boxShadow = '0 2px 6px rgba(0,0,0,.3)';
-  controlUI.style.cursor = 'pointer';
-  controlUI.style.marginBottom = '22px';
-  controlUI.style.textAlign = 'center';
-  controlUI.style.marginLeft = '15px';
-  controlUI.style.marginTop = '15px';
-  controlUI.style.width = '45px';
-  controlUI.style.height = '45px';
-  controlUI.title = 'Click to Add a Story';
-  controlUI.setAttribute('data-toggle', 'modal');
-  controlUI.setAttribute('data-target', '#exampleModal');
-  controlDiv.appendChild(controlUI);
-
-  // Set CSS for the control interior.
-  
-  controlText.style.color = 'rgb(25,25,25)';
-  controlText.style.fontSize = '32px';
-  controlText.style.lineHeight = '38px';
-  controlText.style.paddingLeft = '5px';
-  controlText.style.paddingRight = '5px';
-  controlText.innerHTML = '+';
-  controlUI.appendChild(controlText);
-
-  controlUI.addEventListener('click', function() {
-    toggleAddFlag();    
-  });
-
-}
-
-
 
 
  function initMap(){
@@ -165,22 +102,13 @@ function toggleAddFlag(){
     map.controls[google.maps.ControlPosition.TOP_LEFT].push(centerControlDiv);
 
 
-
-    $(document).ready(function (){
-      $("a.display").click(function (){
-        
-      })
-      
-  })
-
    // Listen for click on map
    google.maps.event.addListener(map, 'click', function(event){
-     // Add story
-    if(addFlag){
-      let latlong = event.latLng.toString()
-      $("#latlong").val(latlong)
-      $("#addForm").submit()
-    }
+     // Add marker
+    //  areaNum++;
+    //  addMarker({coords:event.latLng,
+    //             content:"<h1>Area " +areaNum + ": </h1>" +"</br>" + event.latLng.toString()});
+
 
    });
 

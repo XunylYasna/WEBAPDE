@@ -1,220 +1,38 @@
-/* 
-#MAPHEAD
-{
-  color:WHITE;
-  font-family: sans-serif;
-  text-shadow: -4px 1px red;
-  font-weight: 700;
+html,body{
+  height:100%;
+  margin: 0;
+  padding: 0;
 }
-
-#mainhead
-{
-  font-family: monospace;
-  text-shadow: -4px 1px blue;
-  font-weight: 800;
-}
-
-#welcome
-{
-    color:white;
-}
-
-#username
-{
-  color:red;
-  padding-bottom: 15px;
-} */
-
-/* Dashboard */
-
-
-/* Map Rollo */
-body {
-  /* background-color: #3b444b; */
-  -webkit-touch-callout: none; /* iOS Safari */
-  -webkit-user-select: none; /* Safari */
-  -khtml-user-select: none; /* Konqueror HTML */
-  -moz-user-select: none; /* Firefox */
-  -ms-user-select: none; /* Internet Explorer/Edge */
-  user-select: none; /* Non-prefixed version, currently
-  supported by Chrome and Opera */
-  /* font-family: 'Red Hat Display', sans-serif;
-  color: #343434; */
-}
-
-/* html { */
-  /* width: 100%;
-  height: 100%;
-  overflow: hidden;
-  position: relative; */
-/* } */
-
-
-
-.philippine-map_container {
-  background-color: #3b444b; 
-  width: 100%;
-  height: 100%;
-  position: fixed;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: -17px; /* Increase/Decrease this value for cross-browser compatibility */
-  overflow: hidden;
-  z-index: -1;
+#map{
+  height:100%;
+  width:100%;
 }
 
 
-.philippine-map_container:hover{
-  cursor: grab;
+.gm-style .gm-style-iw {
+   background-color: #252525 !important;
+   top: 0 !important;
+   left: 0 !important;
+   height: 200px;
+   min-height: 150px !important;
+   padding-top: 10px;
+  }
+  /*style the paragraph tag*/
+ .gm-style .gm-style-iw #google-popup p{
+    padding: 10px;
+ }
+
+/*style the annoying little arrow at the bottom*/
+.gm-style div div div div div div div div {
+    background-color: #252525 !important;
+    top: 0;
+    color: #fff;
+    font-size: 16px;
 }
 
-.philippine-map_view {
-  position: fixed;
-  transform: translate(0, -660px);
-}
-
-.philippine-map_view>img{
-  width: 1683px;
-  height: auto;
-}
-
-.philippine-map_location,
-.philippine_rah {
-  position: fixed;
-}
-
-.philippine_rah {
-    top: 2640px;
-    left: 1435px;
-    animation-name: floating;
-    animation-duration: 5s;
-    animation-iteration-count: infinite;
-    animation-timing-function: ease-in-out;
-}
-
-.philippine_rah img{
-  width: 124px;
-  height: 251px;
-  transform: scale(2.3);
-  opacity: .35;
-}
-
-@keyframes floating {
-    from { transform: translate(0,  0px); }
-    65%  { transform: translate(0, 66px); }
-    to   { transform: translate(0, -0px); }
-}
-
-.philippine-map_location:hover{
-  cursor: pointer;
-  opacity: .4;
-  transition: opacity .25s ease-in-out
-}
-
-.philippine-location_info {
-  position: fixed;
-  /* display: none; */
-  top: 0;
-  left: 0;
-  width: 420px;
-  height: 100vh;
-  background-color: white;
-  box-shadow: 10px 0px 55px #555555;
-  overflow-y: scroll;
-}
-
-.philippine-location_info:hover{
-    cursor: default;
-}
-
-.location_close {
-  font-size: 3em;
-  width: 40px;
-  height: 40px;
-}
-
-.location_close:hover{
-  cursor: pointer;
-  color: red;
-  transition: color .25s ease-out;
-}
-
-.location_row {
-  display: flex;
-  font-size: .8em;
-}
-
-.location_row:not(.location_row_close) {
-  margin: 8px 24px 8px 24px;
-}
-
-.location_row_close {
-  justify-content: flex-end;
-}
-
-.location_title {
-  font-family: 'Lacquer', sans-serif;
-  font-size: 2.5em;
-}
-
-.location_location,
-.location_user {
-  font-weight: bold
-}
-
-.location_maps-link {
-  text-decoration: none;
-  color: green
-}
-
-.location_maps-link img {
-  width: 24px;
-  height: 24px;
-  margin-right: 4px;
-}
-
-.location_maps-link:hover,
-.location_maps-link:active {
-  color: red;
-  transition: color .25s ease-out;
-}
-
-.location_comments {
-  margin-top: 48px;
-}
-
-.location_comments .location_title {
-  font-size: 2em;
-}
-
-.location_comment_content hr{
-  opacity: .25;
-}
-
-.location_maps-link,
-.location_user,
-.location_upvote {
-  display: flex;
-  align-items: center;
-}
-
-.user_photo {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  margin-right: 8px
-}
-
-.philippine-location_info *:not(.location_row .location_close, .vote) {
-  pointer-events: none;
-}
-
-.vote {
-  margin: 0 8px;
-}
-
-.vote:hover {
-  cursor: pointer;
+/*style the link*/
+.gm-style div div div div div div div div a {
+    color: #f1f1f1;
+    font-weight: bold;
 }
 
