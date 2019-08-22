@@ -106,12 +106,32 @@ console.log(posts)
 
    });
 
+   for(var i=0;i<posts.length;i++){
+     //addMarker(posts[i]);
+    // console.log("added "+posts[i].location)
+
+    var locationString = posts[i].location
+    var input = locationString.substring(1, locationString.length-1);
+    var latlngStr = input.split(",",2);
+    var lat = parseFloat(latlngStr[0]);
+    var lng = parseFloat(latlngStr[1]);
+    var latlng = new google.maps.LatLng(lat, lng);
+
+    let post = {
+      coords:latlng,
+      id: posts[i]._id,
+      content:posts[i].title
+    }
+    addMarker(post)
+   }
+
    // Add Marker Function
    function addMarker(props){
      var marker = new google.maps.Marker({
        position:props.coords,
        map:map,
-       id:areaNum
+       id:props.id,
+       content:props.content
        //icon:props.iconImage
      });
    //  marker.addListener('click', function(event){
@@ -124,16 +144,10 @@ console.log(posts)
        });
 
        marker.addListener('click', function(event){
-         if(addFlag==1)
-         {
-           //load add page
-         }
-         else{
          infoWindow.open(map, marker);
          console.log(event.latLng.toString())
          console.log(infoWindow.content)
          console.log(marker.id)
-         }
        });
 
 
