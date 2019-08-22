@@ -92,26 +92,33 @@ console.log(posts)
 
    // New map
    map = new google.maps.Map(document.getElementById('map'), options);
-   var areaNum = 0;
 
+   for(var i=0;i<posts.length;i++){
+     //addMarker(posts[i]);
+    // console.log("added "+posts[i].location)
 
+    var locationString = posts[i].location
+    var input = locationString.substring(1, locationString.length-1);
+    var latlngStr = input.split(",",2);
+    var lat = parseFloat(latlngStr[0]);
+    var lng = parseFloat(latlngStr[1]);
+    var latlng = new google.maps.LatLng(lat, lng);
 
-   // Listen for click on map
-   google.maps.event.addListener(map, 'click', function(event){
-     // Add marker
-    //  areaNum++;
-    //  addMarker({coords:event.latLng,
-    //             content:"<h1>Area " +areaNum + ": </h1>" +"</br>" + event.latLng.toString()});
-
-
-   });
+    let post = {
+      coords:latlng,
+      id: posts[i]._id,
+      content:posts[i].title
+    }
+    addMarker(post)
+   }
 
    // Add Marker Function
    function addMarker(props){
      var marker = new google.maps.Marker({
        position:props.coords,
        map:map,
-       id:areaNum
+       id:props.id,
+       content:props.content
        //icon:props.iconImage
      });
    //  marker.addListener('click', function(event){
@@ -123,19 +130,17 @@ console.log(posts)
          content:props.content
        });
 
-       marker.addListener('click', function(event){
-         if(addFlag==1)
-         {
-           //load add page
-         }
-         else{
+       marker.addListener('mouseover', function(event){
          infoWindow.open(map, marker);
-         console.log(event.latLng.toString())
-         console.log(infoWindow.content)
-         console.log(marker.id)
-         }
        });
-
+       marker.addListener('mouseout', function(event){
+         infoWindow.close(map, marker);
+       });
+       marker.addListener('click', function(event){
+         console.log(props.id)
+          $("#post_id").val(props.id)
+          $("#viewPost").submit()
+       });
 
      // Check for customicon
      if(props.iconImage){

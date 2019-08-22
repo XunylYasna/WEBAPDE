@@ -12,7 +12,7 @@ function toggleAddFlag(){
     controlText.innerHTML = 'x';
     controlUI.title = 'Click to Cancel';
     controlUI.setAttribute('data-toggle', 'modal');
-    controlUI.setAttribute('data-target', '#exampleModal'); 
+    controlUI.setAttribute('data-target', '#exampleModal');
   }
 
   else{
@@ -20,7 +20,7 @@ function toggleAddFlag(){
     controlUI.title = 'Click to Add a Story';
 
     controlUI.removeAttribute('data-toggle');
-    controlUI.removeAttribute('data-target');  
+    controlUI.removeAttribute('data-target');
   }
  }
 
@@ -28,7 +28,7 @@ function toggleAddFlag(){
  function AddControl(controlDiv, map) {
 
   // Set CSS for the control border.
-  
+
   controlUI.style.backgroundColor = '#fff';
   controlUI.style.border = '2px solid #fff';
   controlUI.style.borderRadius = '50%';
@@ -46,7 +46,7 @@ function toggleAddFlag(){
   controlDiv.appendChild(controlUI);
 
   // Set CSS for the control interior.
-  
+
   controlText.style.color = 'rgb(25,25,25)';
   controlText.style.fontSize = '32px';
   controlText.style.lineHeight = '38px';
@@ -56,7 +56,7 @@ function toggleAddFlag(){
   controlUI.appendChild(controlText);
 
   controlUI.addEventListener('click', function() {
-    toggleAddFlag();    
+    toggleAddFlag();
   });
 
 }
@@ -166,11 +166,7 @@ function toggleAddFlag(){
 
 
 
-    $(document).ready(function (){
-      $("a.display").click(function (){
-        
-      })
-      
+
   })
 
    // Listen for click on map
@@ -184,12 +180,32 @@ function toggleAddFlag(){
 
    });
 
+   for(var i=0;i<posts.length;i++){
+     //addMarker(posts[i]);
+    // console.log("added "+posts[i].location)
+
+    var locationString = posts[i].location
+    var input = locationString.substring(1, locationString.length-1);
+    var latlngStr = input.split(",",2);
+    var lat = parseFloat(latlngStr[0]);
+    var lng = parseFloat(latlngStr[1]);
+    var latlng = new google.maps.LatLng(lat, lng);
+
+    let post = {
+      coords:latlng,
+      id: posts[i]._id,
+      content:posts[i].title
+    }
+    addMarker(post)
+   }
+
    // Add Marker Function
    function addMarker(props){
      var marker = new google.maps.Marker({
        position:props.coords,
        map:map,
-       id:areaNum
+       id:props.id,
+       content:props.content
        //icon:props.iconImage
      });
    //  marker.addListener('click', function(event){
@@ -201,17 +217,16 @@ function toggleAddFlag(){
          content:props.content
        });
 
-       marker.addListener('click', function(event){
-         if(addFlag==1)
-         {
-           //load add page
-         }
-         else{
+       marker.addListener('mouseover', function(event){
          infoWindow.open(map, marker);
-         console.log(event.latLng.toString())
-         console.log(infoWindow.content)
-         console.log(marker.id)
-         }
+       });
+       marker.addListener('mouseout', function(event){
+         infoWindow.close(map, marker);
+       });
+       marker.addListener('click', function(event){
+         console.log(props.id)
+          $("#post_id").val(props.id)
+          $("#viewPost").submit()
        });
 
 
