@@ -4,6 +4,7 @@ const PORT = process.env.PORT || 3000;
 const path = require('path')
 const bodyParser = require('body-parser');
 
+
 // Body Parser
 app.use(bodyParser.json()); // for parsing application/json
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -32,6 +33,8 @@ app.engine( 'hbs', exphbs( {
 
 app.set('view engine', '.hbs');
 
+// Multer
+const multer = require('multer');
 
 
 // Mongoose Config and Connection
