@@ -13,8 +13,7 @@ html,body{
    background-color: #252525 !important;
    top: 0 !important;
    left: 0 !important;
-   height: 200px;
-   min-height: 150px !important;
+   min-height: 2em !important;
    padding-top: 10px;
   }
   /*style the paragraph tag*/
@@ -35,4 +34,3 @@ html,body{
     color: #f1f1f1;
     font-weight: bold;
 }
-

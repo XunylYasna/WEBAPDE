@@ -92,19 +92,6 @@ console.log(posts)
 
    // New map
    map = new google.maps.Map(document.getElementById('map'), options);
-   var areaNum = 0;
-
-
-
-   // Listen for click on map
-   google.maps.event.addListener(map, 'click', function(event){
-     // Add marker
-    //  areaNum++;
-    //  addMarker({coords:event.latLng,
-    //             content:"<h1>Area " +areaNum + ": </h1>" +"</br>" + event.latLng.toString()});
-
-
-   });
 
    for(var i=0;i<posts.length;i++){
      //addMarker(posts[i]);
@@ -143,13 +130,17 @@ console.log(posts)
          content:props.content
        });
 
-       marker.addListener('click', function(event){
+       marker.addListener('mouseover', function(event){
          infoWindow.open(map, marker);
-         console.log(event.latLng.toString())
-         console.log(infoWindow.content)
-         console.log(marker.id)
        });
-
+       marker.addListener('mouseout', function(event){
+         infoWindow.close(map, marker);
+       });
+       marker.addListener('click', function(event){
+         console.log(props.id)
+          $("#post_id").val(props.id)
+          $("#viewPost").submit()
+       });
 
      // Check for customicon
      if(props.iconImage){
