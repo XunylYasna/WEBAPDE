@@ -7,7 +7,7 @@ router.get('/', (req,res) => res.render('welcome'))
 
 router.get('/add', (req,res) => res.render("add"))
 
-router.get('/dashboard', ensureAuthenticated, (req,res) => 
+router.get('/dashboard', ensureAuthenticated, (req,res) =>
     res.render('dashboard',{
         user:req.user
     }))
@@ -19,11 +19,10 @@ router.get('/map', (req,res) => {
     res.render("map")
 })
 
-router.get('/profile', ensureAuthenticated, (req,res) => 
+router.get('/profile', ensureAuthenticated, (req,res) =>
     res.render('profile',{
         user:req.user
     }))
-
 
 
 
