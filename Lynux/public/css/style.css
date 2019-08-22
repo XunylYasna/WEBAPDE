@@ -34,3 +34,16 @@ html,body{
     color: #f1f1f1;
     font-weight: bold;
 }
+
+/* Story */
+
+.like-up{
+  margin-bottom:16px;
+  font-size:50px;
+}
+
+.like-up:hover {
+  opacity: 0.6;
+  transition: opacity 0.25s ease-in-out;
+  cursor: pointer;
+}

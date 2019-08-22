@@ -1,2 +1,22 @@
-{{post.title}}
-{{post.writeup}}
+{{#if user}}
+    {{>navbar}}
+  {{else}}
+    {{>navbarG}}
+{{/if}}
+
+<div class="container">
+  <div class="form-group">
+    <h1 class="storyTitle"> {{post.title}}</h1>
+    <i class="far fa-hand-point-up like-up"></i><p class="like-number">0</p>
+    <p class="author-story">
+      By: {{post.author.name}}
+    </p>
+    <p class="date-story">
+      Date written: {{post.date}}
+    </p>
+    <p class="location-story">
+      Location: {{post.location}}
+    </p>
+      <textarea class="form-control" id="inputStory" rows="50" readonly>{{post.writeup}}</textarea>
+    </div>
+</div>

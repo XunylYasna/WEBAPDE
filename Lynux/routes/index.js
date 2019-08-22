@@ -3,12 +3,14 @@ const router = express.Router();
 const { ensureAuthenticated } = require('../config/auth')
 
 
+// ROUTE FOR THE MAP AND POSTS
+
 
 // Post Model
 const Post = require('../model/Post');
 
 
-// Displaying post
+// Displaying post on Map
 router.get('/', (req,res) => {
     Post.find({}, function(err, posts) {
         res.render('map',{
@@ -16,18 +18,6 @@ router.get('/', (req,res) => {
             posts:posts
         })
      }); 
-})
-
-
-router.get('/view', (req,res) => {
-    var postid = req.query.post_id
-
-    Post.findOne({_id:postid})
-    .then(post => {
-        res.render('story',{
-            post:post
-        })
-    })
 })
 
 
@@ -60,10 +50,28 @@ router.post('/addStory', ensureAuthenticated, (req,res) =>{
         .catch(err => console.log(err))
 })
 
-// Liking a post
+// Viewing post
+router.get('/view', (req,res) => {
+    var postid = req.query.post_id
+
+    Post.findOne({_id:postid})
+    .then(post => {
+        res.render('story',{
+            post:post
+        })
+    })
+})
 
 
-// Unlinking a post
+// Liking post
+router.post('/view/:id/act', (req, res, next) => {
+    const action = req.body.action;
+    const counter = action === 'Like' ? 1 : -1;
+    Post.update({_id: req.params.id}, {$inc: {score: counter}}, {}, (err, numberAffected) => {
+        res.send('');
+    });
+});
 
+// Realtime updates to multiple clients liking
 
 module.exports = router;
