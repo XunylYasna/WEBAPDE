@@ -14,7 +14,10 @@ router.get('/dashboard', ensureAuthenticated, (req,res) =>
 
 router.get('/about', ensureAuthenticated, (req,res) => res.render("about"))
 
-router.get('/map', ensureAuthenticated, (req,res) => res.render("map"))
+router.get('/map', (req,res) => {
+
+    res.render("map")
+})
 
 router.get('/profile', ensureAuthenticated, (req,res) => 
     res.render('profile',{

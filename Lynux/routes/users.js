@@ -4,7 +4,7 @@ const router = express.Router();
 // User Model
 const User = require('../model/User');
 
-// Passpot
+// Passport
 const passport = require('passport')
 
 // Encrypting user password

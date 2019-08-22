@@ -60,4 +60,5 @@ app.use((req,res,next) =>{
 app.use(express.static(__dirname + '/public'));
 app.use('/', require('./routes/index'))
 app.use('/users',require('./routes/users'))
+app.use('/map',require('./routes/posts'))
 app.listen(PORT, console.log(`Server started on port ${PORT}`))

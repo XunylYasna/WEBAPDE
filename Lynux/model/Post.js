@@ -19,22 +19,17 @@ const BlogSchema = new mongoose.Schema({
         loc :  { type: {type:String}, coordinates: [Number]}
     },
 
-    maps_link: {
-
-    },
 
     date: {
         type: Date,
         default: Date.now
     },
 
-    comments: [],
+    picture:[],
 
-    upvotes: [],
-
-    downvotes: [],
-
-    pictures:[]
+    score: {
+        default:0
+    }
 })
 
 const Blog = mongoose.model('Blog', BlogSchema)
